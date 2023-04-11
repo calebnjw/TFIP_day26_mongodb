@@ -37,7 +37,7 @@ public class BoardGamesController {
     games.setGames(listGames);
     games.setLimit(limit);
     games.setOffset(offset);
-    games.setTotal(limit);
+    games.setTotal(listGames.size());
     games.setTimestamp(LocalDateTime.now());
 
     JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
@@ -77,6 +77,7 @@ public class BoardGamesController {
   public ResponseEntity<String> getBoardGameById(
       @PathVariable Integer gid) {
     Game game = boardGamesRepository.getBoardGameById(gid);
+    game.setTimestamp(LocalDateTime.now());
 
     JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
     objectBuilder.add("game", game.toJson());

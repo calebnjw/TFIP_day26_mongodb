@@ -38,7 +38,7 @@ public class BoardGamesRepository {
 
     Pageable pageable = PageRequest.of(offset, limit);
     query.with(pageable);
-    query.with(Sort.by(Sort.Direction.DESC, "ranking"));
+    query.with(Sort.by(Sort.Direction.ASC, "ranking"));
 
     return mongoTemplate
         .find(query, Document.class, "games")
